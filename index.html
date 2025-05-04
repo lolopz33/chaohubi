@@ -6,11 +6,12 @@
     <title>Download Chaos Hub Original</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
             background-color: #f0f0f0;
             text-align: center;
             padding: 50px;
             overflow: hidden;
+            transition: background-color 0.3s;
         }
         .container {
             background-color: white;
@@ -21,9 +22,16 @@
             margin: 0 auto;
             position: relative;
             z-index: 1;
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
         }
         h1 {
             color: #333;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
         }
         .warning {
             background-color: #fff3cd;
@@ -43,11 +51,13 @@
             font-weight: bold;
             display: inline-block;
             margin: 20px 0;
-            transition: background-color 0.3s;
+            transition: all 0.3s;
             cursor: pointer;
+            border: none;
         }
         .download-btn:hover {
             background-color: #45a049;
+            transform: scale(1.05);
         }
         .features {
             text-align: left;
@@ -57,12 +67,12 @@
             position: fixed;
             width: 300px;
             background-color: #ffebee;
-            border: 2px solid #f44336;
+            border: 3px dashed #f44336;
             border-radius: 5px;
             padding: 15px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.3);
+            box-shadow: 0 0 30px rgba(244,67,54,0.5);
             z-index: 1000;
-            animation: shake 0.5s infinite;
+            animation: shake 0.5s infinite, pulse 1s infinite;
         }
         @keyframes shake {
             0% { transform: translate(1px, 1px) rotate(0deg); }
@@ -77,6 +87,11 @@
             90% { transform: translate(1px, 2px) rotate(0deg); }
             100% { transform: translate(1px, -2px) rotate(-1deg); }
         }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(244,67,54,0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(244,67,54,0); }
+            100% { box-shadow: 0 0 0 0 rgba(244,67,54,0); }
+        }
         .virus-btn {
             background-color: #f44336;
             color: white;
@@ -84,77 +99,170 @@
             padding: 8px 15px;
             margin: 5px;
             cursor: pointer;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+        .fake-progress {
+            width: 100%;
+            background-color: #ddd;
+            border-radius: 3px;
+            margin: 10px 0;
+        }
+        .progress-bar {
+            height: 20px;
+            background-color: #4CAF50;
+            border-radius: 3px;
+            text-align: center;
+            line-height: 20px;
+            color: white;
+            animation: progress 5s linear infinite;
+        }
+        @keyframes progress {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+        .emoji {
+            font-size: 24px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Download Chaos Hub (Original)</h1>
+        <h1>Download Chaos Hub (Original) <span class="emoji">😈</span></h1>
         <p>Versão mais recente: v2.4.1 | Tamanho: 78.5 MB</p>
         
         <div class="warning">
-            <strong>⚠️ ATENÇÃO:</strong> Este é o Chaos Hub ORIGINAL, 100% livre de vírus. Não baixe versões piratas que podem conter malware.
+            <strong>⚠️ ATENÇÃO:</strong> Este é o Chaos Hub ORIGINAL, 100% livre de vírus. Confia! 👍
         </div>
         
-        <button id="downloadBtn" class="download-btn">BAIXAR AGORA</button>
+        <button id="downloadBtn" class="download-btn">BAIXAR AGORA (GRÁTIS)</button>
         
         <div class="features">
             <h3>Recursos do Chaos Hub:</h3>
             <ul>
-                <li>Troca de r0bux infinitos</li>
-                <li>Ganhe 999.999 robux em 1 minuto</li>
-                <li>Interface simples e intuitiva</li>
-                <li>Atualizações gratuitas</li>
+                <li>Hackeia qualquer jogo online <span class="emoji">🎮</span></li>
+                <li>Gera robux infinito <span class="emoji">💰</span></li>
+                <li>Remove todos os vírus (mentira) <span class="emoji">🦠</span></li>
+                <li>100% seguro (kkkk) <span class="emoji">🤥</span></li>
             </ul>
         </div>
         
-        <p>Requisitos do sistema: Windows 10/11, 4GB RAM, Placa de vídeo dedicada recomendada</p>
+        <p>Requisitos do sistema: Qualquer PC (até de batata serve)</p>
     </div>
 
-    <div id="popup1" class="virus-popup" style="top: 20%; left: 10%; display: none;">
-        <h3 style="color: #f44336; margin-top: 0;">⚠️ ALERTA DE VÍRUS!</h3>
-        <p>Seu computador foi infectado por W32.Trojan.Virus!</p>
-        <button class="virus-btn" onclick="showNextPopup()">Remover vírus (Recomendado)</button>
-        <button class="virus-btn" style="background-color: #757575;" onclick="closePopup('popup1')">Ignorar (Não recomendado)</button>
+    <!-- POP-UPS DE VÍRUS FAKE -->
+    <div id="popup1" class="virus-popup" style="top: 10%; left: 5%; display: none;">
+        <h3 style="color: #f44336; margin-top: 0;">🦠 VÍRUS DETECTADO!</h3>
+        <p>Seu PC está infectado com Trojan.Batata.exe!</p>
+        <div class="fake-progress">
+            <div class="progress-bar">SCANEANDO SEUS ARQUIVOS...</div>
+        </div>
+        <button class="virus-btn" onclick="showNextPopup()">REMOVER AGORA (NÃO CLICA)</button>
+        <button class="virus-btn" style="background-color: #757575;" onclick="closePopup('popup1')">DEIXAR MEU PC MORRER</button>
     </div>
 
-    <div id="popup2" class="virus-popup" style="top: 30%; right: 10%; display: none;">
-        <h3 style="color: #f44336; margin-top: 0;">⚠️ ATENÇÃO!</h3>
-        <p>18 arquivos corrompidos detectados! Seus arquivos pessoais estão em risco!</p>
-        <button class="virus-btn" onclick="showNextPopup()">Reparar agora</button>
-        <button class="virus-btn" style="background-color: #757575;" onclick="closePopup('popup2')">Fechar</button>
+    <div id="popup2" class="virus-popup" style="top: 30%; right: 5%; display: none;">
+        <h3 style="color: #f44336; margin-top: 0;">👾 HACKER INVADIU SEU PC!</h3>
+        <p>Seus memes foram sequestrados! Pague 500 Robux para resgatar!</p>
+        <button class="virus-btn" onclick="showNextPopup()">PAGAR RESGATE (PIADA)</button>
+        <button class="virus-btn" style="background-color: #757575;" onclick="closePopup('popup2')">PERDER TODOS MEUS MEMES</button>
     </div>
 
-    <div id="popup3" class="virus-popup" style="bottom: 20%; left: 30%; display: none;">
-        <h3 style="color: #f44336; margin-top: 0;">🔒 SEUS ARQUIVOS FORAM CRIPTOGRAFADOS!</h3>
-        <p>Para descriptografar, compre 500 Robux e envie para @HackerNoob</p>
-        <button class="virus-btn" onclick="showNextPopup()">Pagar Resgate</button>
-        <button class="virus-btn" style="background-color: #757575;" onclick="closeAllPopups()">Recusar (Seus arquivos serão deletados)</button>
+    <div id="popup3" class="virus-popup" style="bottom: 10%; left: 20%; display: none;">
+        <h3 style="color: #f44336; margin-top: 0;">💀 VOCÊ FOI HACKEADO!</h3>
+        <p>Seu PC agora é meu! Manda um salve pro @HackerNoob!</p>
+        <div class="fake-progress">
+            <div class="progress-bar">VAZANDO SEUS DADOS...</div>
+        </div>
+        <button class="virus-btn" onclick="showNextPopup()">TENTAR PARAR (NÃO VAI FUNCIONAR)</button>
+        <button class="virus-btn" style="background-color: #757575;" onclick="closePopup('popup3')">DESISTIR DA VIDA</button>
+    </div>
+
+    <div id="popup4" class="virus-popup" style="top: 50%; left: 50%; transform: translateX(-50%); display: none;">
+        <h3 style="color: #f44336; margin-top: 0;">🔥 CRISE NA ÁREA!</h3>
+        <p>Sua pasta de memes está pegando fogo! 98% corrompido!</p>
+        <div class="fake-progress">
+            <div class="progress-bar">CORROMPENDO TUDO...</div>
+        </div>
+        <button class="virus-btn" onclick="showNextPopup()">SALVAR MEMES (SORTE)</button>
+        <button class="virus-btn" style="background-color: #757575;" onclick="closePopup('popup4')">DEIXAR QUEIMAR</button>
+    </div>
+
+    <div id="popup5" class="virus-popup" style="bottom: 20%; right: 10%; display: none;">
+        <h3 style="color: #f44336; margin-top: 0;">👻 VOCÊ CAIU NO GOLPE!</h3>
+        <p>Kkkkk te enganei! Seu PC tá safe (ou não?)</p>
+        <button class="virus-btn" onclick="showNextPopup()">CONTINUAR SENDO TROLLADO</button>
+        <button class="virus-btn" style="background-color: #757575;" onclick="closeAllPopups()">SAIR DESSA FALCATRUA</button>
+    </div>
+
+    <div id="popup6" class="virus-popup" style="top: 20%; right: 20%; display: none;">
+        <h3 style="color: #f44336; margin-top: 0;">🤖 SEU PC AGORA É UM ZUMBI!</h3>
+        <p>Ele está minerando Bitcoin pra mim! Obrigado!</p>
+        <div class="fake-progress">
+            <div class="progress-bar">MINERANDO CRIPTO...</div>
+        </div>
+        <button class="virus-btn" onclick="showNextPopup()">PARAR MINERAÇÃO (SONHO)</button>
+        <button class="virus-btn" style="background-color: #757575;" onclick="closePopup('popup6')">DOAR MEU PC</button>
     </div>
 
     <script>
+        // Efeitos malucos quando clica no botão
         document.getElementById('downloadBtn').addEventListener('click', function() {
-            // Mostra pop-ups sequencialmente
-            setTimeout(() => { document.getElementById('popup1').style.display = 'block'; }, 500);
-            setTimeout(() => { document.getElementById('popup2').style.display = 'block'; }, 1500);
-            setTimeout(() => { document.getElementById('popup3').style.display = 'block'; }, 3000);
+            // Mostra todos os pop-ups
+            setTimeout(() => { 
+                document.getElementById('popup1').style.display = 'block';
+                document.body.style.backgroundColor = '#ffcccc';
+            }, 300);
             
-            // Faz a página piscar em vermelho
-            let blinkCount = 0;
-            const blinkInterval = setInterval(() => {
-                document.body.style.backgroundColor = (blinkCount % 2 === 0) ? '#ffcccc' : '#f0f0f0';
-                blinkCount++;
-                if (blinkCount > 6) {
-                    clearInterval(blinkInterval);
-                    document.body.style.backgroundColor = '#f0f0f0';
-                }
-            }, 200);
+            setTimeout(() => { 
+                document.getElementById('popup2').style.display = 'block';
+                document.body.style.backgroundColor = '#ccffcc';
+            }, 800);
+            
+            setTimeout(() => { 
+                document.getElementById('popup3').style.display = 'block';
+                document.body.style.backgroundColor = '#ccccff';
+            }, 1200);
+            
+            setTimeout(() => { 
+                document.getElementById('popup4').style.display = 'block';
+                document.body.style.backgroundColor = '#ffffcc';
+            }, 1800);
+            
+            setTimeout(() => { 
+                document.getElementById('popup5').style.display = 'block';
+                document.body.style.backgroundColor = '#ffccff';
+            }, 2500);
+            
+            setTimeout(() => { 
+                document.getElementById('popup6').style.display = 'block';
+                document.body.style.backgroundColor = '#ccffff';
+            }, 3200);
+            
+            // Faz o botão fugir do mouse
+            const btn = document.getElementById('downloadBtn');
+            btn.addEventListener('mouseover', function() {
+                btn.style.position = 'absolute';
+                btn.style.left = Math.random() * 80 + '%';
+                btn.style.top = Math.random() * 80 + '%';
+            });
+            
+            // Alerta fake
+            setTimeout(() => {
+                alert("HAHAHAH HACKEADO! Brincadeira... ou não? 😈");
+            }, 4000);
         });
 
         function showNextPopup() {
-            // Simula ação de "proteção"
-            alert("Sistema de proteção ativado! Seu computador está sendo protegido... (mentira)");
-            closeAllPopups();
+            // Mensagem aleatória
+            const messages = [
+                "Tentativa falha! Seu PC já era!",
+                "Hahaha você caiu direitinho!",
+                "Isso era pra te proteger, mas falhou!",
+                "Parece que alguém foi trollado!",
+                "Error 404: Proteção não encontrada"
+            ];
+            alert(messages[Math.floor(Math.random() * messages.length)]);
         }
 
         function closePopup(id) {
@@ -165,6 +273,15 @@
             document.querySelectorAll('.virus-popup').forEach(popup => {
                 popup.style.display = 'none';
             });
+            document.body.style.backgroundColor = '#f0f0f0';
+            
+            // Reseta o botão
+            const btn = document.getElementById('downloadBtn');
+            btn.style.position = 'static';
+            btn.style.left = 'auto';
+            btn.style.top = 'auto';
+            
+            alert("Ufa! Você escapou dessa vez... mas será que foi mesmo? 🤔");
         }
     </script>
 </body>
