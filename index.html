@@ -10,6 +10,7 @@
             background-color: #f0f0f0;
             text-align: center;
             padding: 50px;
+            overflow: hidden;
         }
         .container {
             background-color: white;
@@ -18,6 +19,8 @@
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
             max-width: 600px;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
         h1 {
             color: #333;
@@ -41,6 +44,7 @@
             display: inline-block;
             margin: 20px 0;
             transition: background-color 0.3s;
+            cursor: pointer;
         }
         .download-btn:hover {
             background-color: #45a049;
@@ -48,6 +52,38 @@
         .features {
             text-align: left;
             margin: 30px 0;
+        }
+        .virus-popup {
+            position: fixed;
+            width: 300px;
+            background-color: #ffebee;
+            border: 2px solid #f44336;
+            border-radius: 5px;
+            padding: 15px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.3);
+            z-index: 1000;
+            animation: shake 0.5s infinite;
+        }
+        @keyframes shake {
+            0% { transform: translate(1px, 1px) rotate(0deg); }
+            10% { transform: translate(-1px, -2px) rotate(-1deg); }
+            20% { transform: translate(-3px, 0px) rotate(1deg); }
+            30% { transform: translate(3px, 2px) rotate(0deg); }
+            40% { transform: translate(1px, -1px) rotate(1deg); }
+            50% { transform: translate(-1px, 2px) rotate(-1deg); }
+            60% { transform: translate(-3px, 1px) rotate(0deg); }
+            70% { transform: translate(3px, 1px) rotate(-1deg); }
+            80% { transform: translate(-1px, -1px) rotate(1deg); }
+            90% { transform: translate(1px, 2px) rotate(0deg); }
+            100% { transform: translate(1px, -2px) rotate(-1deg); }
+        }
+        .virus-btn {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            margin: 5px;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -60,13 +96,13 @@
             <strong>⚠️ ATENÇÃO:</strong> Este é o Chaos Hub ORIGINAL, 100% livre de vírus. Não baixe versões piratas que podem conter malware.
         </div>
         
-        <a href="#" class="download-btn">BAIXAR AGORA</a>
+        <button id="downloadBtn" class="download-btn">BAIXAR AGORA</button>
         
         <div class="features">
             <h3>Recursos do Chaos Hub:</h3>
             <ul>
-                <li>Troca de r0bux </li>
-                <li>muito robvux</li>
+                <li>Troca de r0bux infinitos</li>
+                <li>Ganhe 999.999 robux em 1 minuto</li>
                 <li>Interface simples e intuitiva</li>
                 <li>Atualizações gratuitas</li>
             </ul>
@@ -74,5 +110,62 @@
         
         <p>Requisitos do sistema: Windows 10/11, 4GB RAM, Placa de vídeo dedicada recomendada</p>
     </div>
+
+    <div id="popup1" class="virus-popup" style="top: 20%; left: 10%; display: none;">
+        <h3 style="color: #f44336; margin-top: 0;">⚠️ ALERTA DE VÍRUS!</h3>
+        <p>Seu computador foi infectado por W32.Trojan.Virus!</p>
+        <button class="virus-btn" onclick="showNextPopup()">Remover vírus (Recomendado)</button>
+        <button class="virus-btn" style="background-color: #757575;" onclick="closePopup('popup1')">Ignorar (Não recomendado)</button>
+    </div>
+
+    <div id="popup2" class="virus-popup" style="top: 30%; right: 10%; display: none;">
+        <h3 style="color: #f44336; margin-top: 0;">⚠️ ATENÇÃO!</h3>
+        <p>18 arquivos corrompidos detectados! Seus arquivos pessoais estão em risco!</p>
+        <button class="virus-btn" onclick="showNextPopup()">Reparar agora</button>
+        <button class="virus-btn" style="background-color: #757575;" onclick="closePopup('popup2')">Fechar</button>
+    </div>
+
+    <div id="popup3" class="virus-popup" style="bottom: 20%; left: 30%; display: none;">
+        <h3 style="color: #f44336; margin-top: 0;">🔒 SEUS ARQUIVOS FORAM CRIPTOGRAFADOS!</h3>
+        <p>Para descriptografar, compre 500 Robux e envie para @HackerNoob</p>
+        <button class="virus-btn" onclick="showNextPopup()">Pagar Resgate</button>
+        <button class="virus-btn" style="background-color: #757575;" onclick="closeAllPopups()">Recusar (Seus arquivos serão deletados)</button>
+    </div>
+
+    <script>
+        document.getElementById('downloadBtn').addEventListener('click', function() {
+            // Mostra pop-ups sequencialmente
+            setTimeout(() => { document.getElementById('popup1').style.display = 'block'; }, 500);
+            setTimeout(() => { document.getElementById('popup2').style.display = 'block'; }, 1500);
+            setTimeout(() => { document.getElementById('popup3').style.display = 'block'; }, 3000);
+            
+            // Faz a página piscar em vermelho
+            let blinkCount = 0;
+            const blinkInterval = setInterval(() => {
+                document.body.style.backgroundColor = (blinkCount % 2 === 0) ? '#ffcccc' : '#f0f0f0';
+                blinkCount++;
+                if (blinkCount > 6) {
+                    clearInterval(blinkInterval);
+                    document.body.style.backgroundColor = '#f0f0f0';
+                }
+            }, 200);
+        });
+
+        function showNextPopup() {
+            // Simula ação de "proteção"
+            alert("Sistema de proteção ativado! Seu computador está sendo protegido... (mentira)");
+            closeAllPopups();
+        }
+
+        function closePopup(id) {
+            document.getElementById(id).style.display = 'none';
+        }
+
+        function closeAllPopups() {
+            document.querySelectorAll('.virus-popup').forEach(popup => {
+                popup.style.display = 'none';
+            });
+        }
+    </script>
 </body>
 </html>
